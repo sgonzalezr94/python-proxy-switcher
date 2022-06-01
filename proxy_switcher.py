@@ -18,7 +18,9 @@ class ProxySwitcher(object):
             return
 
         if ports is not None:
-            assert len(proxies) == len(ports)
+            assert len(proxies) == len(
+                ports
+            )  # We must check that there is a relationship between both lists, if there's a missmatch requests will fail.
             self.ports = ports
         else:
             self.ports = [8080] * len(
@@ -26,7 +28,7 @@ class ProxySwitcher(object):
             )  # We asign this common port to every single proxy we use.
 
         self.proxies = proxies
-        self.n_proxy = len(self.proxies)
+        self.num_proxies = len(self.proxies)
         self.current = 0
 
     def __str__(self):
@@ -44,10 +46,10 @@ class ProxySwitcher(object):
             port = self.ports[self.current]
 
             self.current += 1
-            if self.current % self.n_proxy == 0:
+            if self.current % self.num_proxies == 0:
                 self.current = 0
         else:
-            idx = np.random.randint(self.n_proxy)
+            idx = np.random.randint(self.num_proxies)
             proxy = self.proxies[idx]
             port = self.ports[idx]
 
