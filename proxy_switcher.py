@@ -4,7 +4,7 @@ import os
 
 
 class ProxySwitcher(object):
-    def __init__(self, proxies: List[str], ports: Union[List, None] = None):
+    def __init__(self, proxies: List[str], ports: Union[List[str], None] = None):
         """
         Initialize the object with a list of string of proxies and ports if provided.If ports are not defined,
         the http request will always try to use the conventional 8080 port.
